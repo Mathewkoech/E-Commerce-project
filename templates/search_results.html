@@ -9,8 +9,8 @@
 
     {% for every in object_list %}
         <div>
-            <h3><a href="{% url 'detail' every.pk %}">{{ every.title }}</a></h3>
-            <p>Author: {{ every.author }}</p>
+            <h3><a href="{% url 'detail' every.pk %}">{{ every.name }}</a></h3>
+            <p>ingredients: {{ every.ingredients }}</p>
         </div>
     {% empty %}
     <h5 class="text-danger">Nothing found :(</h5>

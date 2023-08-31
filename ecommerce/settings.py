@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mealapp.apps.MealappConfig',
+    'ecom_auth',
+    # 'ecom_auth.apps.Ecom_authConfig',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +125,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = 'list'   # controls login
+LOGOUT_REDIRECT_URL = 'list'  # controls logout

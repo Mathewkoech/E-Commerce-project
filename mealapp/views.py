@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.db.models import Q # for search method
 from django.http import JsonResponse
 import json
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
@@ -26,12 +27,20 @@ class SearchResultsListView(ListView):
 	def get_queryset(self): # new
 		query = self.request.GET.get('q')
 		return Meal.objects.filter(
-		Q(title__icontains=query) | Q(author__icontains=query)
+		name__search=query,
+		meal_type__search=query
 		)
 
 class MealCheckoutView(DetailView):
     model = Meal
     template_name = 'checkout.html'
+
+    from django.contrib.auth.mixins import LoginRequiredMixin 
+
+class BookCheckoutView(LoginRequiredMixin, DetailView):
+    model = Meal
+    template_name = 'checkout.html'
+    login_url     = 'login'
 
 
 # def paymentComplete(request):
@@ -42,3 +51,9 @@ class MealCheckoutView(DetailView):
 # 		product=product
 # 	)
 # 	return JsonResponse('Payment completed!', safe=False)
+
+def login_view(request):
+  form = LoginForm(request.POST)
+
+  if form.is_valid():
+    ...

@@ -26,7 +26,7 @@
 
 <body>
 	<div class="container">
-		{% if object.book_available is True %}
+		{% if object.meal_available is True %}
 		<div class="row">
 			<div class="col-lg">
 				<br><div class="text-center" style="width: 22rem;">
@@ -36,7 +36,7 @@
 			<div class="col-lg">
 				<br>
 				<div class="card card-body">
-					<h3>{{object.title}}</h3>
+					<h3>{{object.name}}</h3>
 					<hr>
 					<h4>Total: ${{object.price|floatformat:2}}</h4>
 					<hr>
@@ -49,9 +49,9 @@
 	</div>
 
 	
-	<!--Paypal payments-->
+	<!--cash payments-->
 
-	<div id="paypal-button-container"></div>
+	<div id="cash-button-container"></div>
     </body>
     html>
     {% endblock content %}
