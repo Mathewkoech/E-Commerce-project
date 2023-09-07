@@ -16,8 +16,6 @@ class Meal(models.Model):
     meal_type = models.CharField(max_length=255,null=False,default="Unknown")
     created_at = models.DateTimeField(default=datetime.now())
     updated_at = models.DateTimeField(auto_now=True)
-    slug = models.SlugField(unique=True, null=False, default=generate_slug)
-
     description = models.TextField(blank=True)
 
     def __str__(self):

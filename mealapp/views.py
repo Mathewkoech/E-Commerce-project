@@ -20,6 +20,17 @@ class MealsDetailView(DetailView):
     template_name = 'detail.html'
 
 
+# class SearchResultsListView(ListView):
+# 	model = Meal
+# 	template_name = 'search_results.html'
+
+# 	def get_queryset(self): # new
+# 		query = self.request.GET.get('q')
+# 		return Meal.objects.filter(
+# 			name__contains=query,
+# 			meal_type__contains=query
+# 		)
+
 class SearchResultsListView(ListView):
 	model = Meal
 	template_name = 'search_results.html'
@@ -27,9 +38,9 @@ class SearchResultsListView(ListView):
 	def get_queryset(self): # new
 		query = self.request.GET.get('q')
 		return Meal.objects.filter(
-		name__search=query,
-		meal_type__search=query
+		Q(name__icontains=query) | Q(meal_type__icontains=query)
 		)
+
 
 class MealCheckoutView(DetailView):
     model = Meal
@@ -52,8 +63,8 @@ class BookCheckoutView(LoginRequiredMixin, DetailView):
 # 	)
 # 	return JsonResponse('Payment completed!', safe=False)
 
-def login_view(request):
-  form = LoginForm(request.POST)
+# def login_view(request):
+#   form = LoginForm(request.POST)
 
-  if form.is_valid():
-    ...
+#   if form.is_valid():
+#     ...
